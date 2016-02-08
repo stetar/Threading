@@ -60,7 +60,6 @@ namespace Projekt
             foreach (GameObject go in objectList.ToList()) //To list as you can't modify it in runtime elsewise.
             {
                 go.Update(fps);
-                go.UpdateAnimation(fps);
             }
 
             removeList.Clear();

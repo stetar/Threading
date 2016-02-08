@@ -44,12 +44,12 @@ namespace Projekt
             this.imagePath = imagePath;
         }
 
-        public virtual void Draw(Graphics dc) 
+        public virtual void Draw(Graphics dc)
         {
             dc.DrawImage(sprite, position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
         }
 
-        public virtual void Update(float fps) 
+        public virtual void Update(float fps)
         {
             CheckCollision();
         }
