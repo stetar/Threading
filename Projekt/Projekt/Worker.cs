@@ -23,6 +23,7 @@ namespace Projekt
         {
             this.speed = speed;
             Thread t = new Thread(() => Update(GameWorld.currentFps));
+            t.IsBackground = true;
             t.Start();
         }
         public override void Update(float fps)

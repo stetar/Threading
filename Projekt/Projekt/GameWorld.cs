@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Projekt
@@ -38,6 +39,8 @@ namespace Projekt
             this.dc = backBuffer.Graphics;
             objectList = new List<GameObject>();
             removeList = new List<GameObject>();
+            Thread t = new Thread(GameLoop);
+            t.Start();
             SetupWorld();
         }
 
@@ -49,13 +52,16 @@ namespace Projekt
 
         public void GameLoop()
         {
-            DateTime startTime = DateTime.Now;
-            TimeSpan deltaTime = startTime - endTime;
-            int milliSeconds = deltaTime.Milliseconds > 0 ? deltaTime.Milliseconds : 1;
-            currentFps = 1000f / milliSeconds;
-            endTime = DateTime.Now;
-            Update(currentFps);
-            Draw();
+            while (true)
+            {
+                DateTime startTime = DateTime.Now;
+                TimeSpan deltaTime = startTime - endTime;
+                int milliSeconds = deltaTime.Milliseconds > 0 ? deltaTime.Milliseconds : 1;
+                currentFps = 1000f / milliSeconds;
+                endTime = DateTime.Now;
+                Update(currentFps);
+                Draw();
+            }
         }
 
         private void Update(float fps)
