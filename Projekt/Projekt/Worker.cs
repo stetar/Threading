@@ -10,6 +10,7 @@ namespace Projekt
     class Worker : GameObject
     {
         float speed;
+        public static int gold;
         /// <summary>
         /// 
         /// </summary>
