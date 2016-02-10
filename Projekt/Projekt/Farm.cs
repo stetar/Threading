@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace Projekt
 {
-    class Farm:GameObject
+    class Farm : GameObject
     {
+        private static bool upgraded = false;
         private static Object FarmLock = new Object();
-        static Semaphore UpgradeFarm = new Semaphore(0,2);
+        static Semaphore UpgradeFarm = new Semaphore(0, 2);
 
-        public Farm(float speed, string imagepath, Vector2D startpos, float scalefactor) : base(imagepath, startpos, scalefactor)
+        public Farm(string imagepath, Vector2D startpos, float scalefactor) : base(imagepath, startpos, scalefactor)
         {
-            
+
         }
 
         static void WhichFarm()
-
         {
-            if (placeholder == true)
+            if (!upgraded)
             {
                 lock (FarmLock)
                 {
@@ -28,7 +28,7 @@ namespace Projekt
                     Worker.gold = 5;
                 }
             }
-            if (placeholder == false)
+            if (upgraded)
             {
                 UpgradeFarm.Release(0);
 
@@ -40,7 +40,7 @@ namespace Projekt
 
         static void Enter(object Worker)
         {
-            
+
         }
     }
 }
