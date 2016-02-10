@@ -15,7 +15,7 @@ namespace Projekt
         public static List<GameObject> removeList;
         private static Rectangle displayRectangle;
         private DateTime endTime;
-        private float currentFps;
+        public static float currentFps;
         public static int totalGold;
 
 

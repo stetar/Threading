@@ -11,10 +11,7 @@ namespace Projekt
     {
         float speed;
         public static int gold = 0;
-        private int deathCount = 0;
-        private static bool upgraded = false;
-        private static Object FarmLock = new Object();
-        private static Semaphore UpgradeFarm = new Semaphore(2, 2);
+        public static int deathCount = 0;
 
         /// <summary>
         /// 
@@ -25,6 +22,8 @@ namespace Projekt
         public Worker(float speed, string imagepath, Vector2D startPos, float scalefactor) : base(imagepath, startPos, scalefactor)
         {
             this.speed = speed;
+            Thread t = new Thread(() => Update(GameWorld.currentFps));
+            t.Start();
         }
         public override void Update(float fps)
         {
@@ -40,39 +39,6 @@ namespace Projekt
             if (deathCount == 15)
             {
                 GameWorld.removeList.Add(this);
-            }
-        }
-
-        public override void OnCollision(GameObject other)
-        {
-            if (other is Inn)
-            {
-                if (gold >= 5)
-                {
-                    GameWorld.totalGold += 5;
-                    Thread.Sleep(3000);
-                    gold = 0;
-                    deathCount += 1;
-                }
-
-            }
-
-            if (other is Farm)
-            {
-                if (!upgraded)
-                {
-                    lock (FarmLock)
-                    {
-                        Thread.Sleep(4000);
-                        Worker.gold = 5;
-                    }
-                }
-                if (upgraded)
-                {
-                    Thread.Sleep(4000);
-                    Worker.gold = 5;
-                    UpgradeFarm.Release();
-                }
             }
         }
     }
