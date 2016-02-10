@@ -11,6 +11,7 @@ namespace Projekt
     {
         float speed;
         public static int gold;
+        private int deathCount = 0;
         /// <summary>
         /// 
         /// </summary>
@@ -25,11 +26,11 @@ namespace Projekt
         {
             if (gold < 5)
             {
-                Vector2D velocity = this.position.Subtract(inn.position);
+                Vector2D velocity = this.position.Subtract(Inn.position);
             }
             if (gold > 5)
             {
-                Vector2D velocity = this.position.Subtract(farm.position);
+                Vector2D velocity = this.position.Subtract(Farm.position);
             }
         }
         public override void OnCollision(GameObject other)
@@ -39,7 +40,7 @@ namespace Projekt
                 if (gold >= 5)
                 {
                     Thread.Sleep(1000);
-                    Death += 1;
+                    deathCount += 1;
                 }
 
             }
