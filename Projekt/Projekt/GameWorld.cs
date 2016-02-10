@@ -16,7 +16,8 @@ namespace Projekt
         private static Rectangle displayRectangle;
         private DateTime endTime;
         private float currentFps;
-            
+        public static int totalGold;
+
 
         public static Rectangle WindowRectangle
         {

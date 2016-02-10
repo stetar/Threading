@@ -10,7 +10,7 @@ namespace Projekt
     class Worker : GameObject
     {
         float speed;
-        public static int gold;
+        public static int gold = 0;
         private int deathCount = 0;
         private static bool upgraded = false;
         private static Object FarmLock = new Object();
@@ -36,6 +36,11 @@ namespace Projekt
             {
                 Vector2D velocity = this.position.Subtract(Farm.position);
             }
+
+            if (deathCount == 15)
+            {
+                GameWorld.removeList.Add(this);
+            }
         }
 
         public override void OnCollision(GameObject other)
@@ -44,6 +49,7 @@ namespace Projekt
             {
                 if (gold >= 5)
                 {
+                    GameWorld.totalGold += 5;
                     Thread.Sleep(3000);
                     gold = 0;
                     deathCount += 1;
