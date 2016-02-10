@@ -39,9 +39,9 @@ namespace Projekt
             this.dc = backBuffer.Graphics;
             objectList = new List<GameObject>();
             removeList = new List<GameObject>();
+            SetupWorld();
             Thread t = new Thread(GameLoop);
             t.Start();
-            SetupWorld();
         }
 
         public void SetupWorld()
