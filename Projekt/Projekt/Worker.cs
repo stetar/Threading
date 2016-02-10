@@ -12,6 +12,10 @@ namespace Projekt
         float speed;
         public static int gold;
         private int deathCount = 0;
+        private static bool upgraded = false;
+        private static Object FarmLock = new Object();
+        private static Semaphore UpgradeFarm = new Semaphore(2, 2);
+
         /// <summary>
         /// 
         /// </summary>
@@ -33,13 +37,14 @@ namespace Projekt
                 Vector2D velocity = this.position.Subtract(Farm.position);
             }
         }
+
         public override void OnCollision(GameObject other)
         {
             if (other is Inn)
             {
                 if (gold >= 5)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(3000);
                     gold = 0;
                     deathCount += 1;
                 }
@@ -48,7 +53,20 @@ namespace Projekt
 
             if (other is Farm)
             {
-
+                if (!upgraded)
+                {
+                    lock (FarmLock)
+                    {
+                        Thread.Sleep(4000);
+                        Worker.gold = 5;
+                    }
+                }
+                if (upgraded)
+                {
+                    Thread.Sleep(4000);
+                    Worker.gold = 5;
+                    UpgradeFarm.Release();
+                }
             }
         }
     }
