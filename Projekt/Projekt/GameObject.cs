@@ -13,6 +13,7 @@ namespace Projekt
         public Image sprite;
         protected float scaleFactor;
         private string imagePath;
+        //penis
 
         public RectangleF CollisionBox
         {
