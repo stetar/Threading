@@ -7,10 +7,15 @@ using System.Threading.Tasks;
 
 namespace Projekt
 {
-    class Farm
+    class Farm:GameObject
     {
         private static Object FarmLock = new Object();
         static Semaphore UpgradeFarm = new Semaphore(0,2);
+
+        public Farm(float speed, string imagepath, Vector2D startpos, float scalefactor) : base(imagepath, startpos, scalefactor)
+        {
+            
+        }
 
         static void WhichFarm()
 
