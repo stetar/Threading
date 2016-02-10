@@ -40,6 +40,7 @@ namespace Projekt
                 if (gold >= 5)
                 {
                     Thread.Sleep(1000);
+                    gold == 0;
                     deathCount += 1;
                 }
 
