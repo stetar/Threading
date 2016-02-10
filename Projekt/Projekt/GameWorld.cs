@@ -16,6 +16,7 @@ namespace Projekt
         private static Rectangle displayRectangle;
         private DateTime endTime;
         private float currentFps;
+            
 
         public static Rectangle WindowRectangle
         {
@@ -41,7 +42,8 @@ namespace Projekt
 
         public void SetupWorld()
         {
-
+            Inn myInn = new Inn("Inn.jpg", new Vector2D(100, 100), 1.5f);
+            objectList.Add(myInn);
         }
 
         public void GameLoop()
