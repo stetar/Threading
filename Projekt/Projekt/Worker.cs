@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Projekt
@@ -36,6 +37,7 @@ namespace Projekt
             {
                 if (gold >= 5)
                 {
+                    Thread.Sleep(1000);
                     Death += 1;
                 }
                 
