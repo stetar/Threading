@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Projekt
 {
-    class Mine
+    class Farm
     {
-        private static Object MineLock = new Object();
-        static Semaphore UpgradeMine = new Semaphore(0,2);
+        private static Object FarmLock = new Object();
+        static Semaphore UpgradeFarm = new Semaphore(0,2);
 
-        static void WhichMine()
+        static void WhichFarm()
 
         {
             if (placeholder == true)
             {
-                lock (MineLock)
+                lock (FarmLock)
                 {
                     Thread.Sleep(4000);
                     Worker.gold = 5;
@@ -25,11 +25,11 @@ namespace Projekt
             }
             if (placeholder == false)
             {
-                UpgradeMine.Release(0);
+                UpgradeFarm.Release(0);
 
                 Thread.Sleep(4000);
                 Worker.gold = 5;
-                UpgradeMine.Release();
+                UpgradeFarm.Release();
             }
         }
 
