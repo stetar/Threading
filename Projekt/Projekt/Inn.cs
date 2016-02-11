@@ -17,6 +17,7 @@ namespace Projekt
             base.position = startpos;
         }
 
+        //This collision will make the workers wait their turn, enter the inn, spend their gold, giving it to the player, enjoying their drink and then get back to work.
         public override void OnCollision(GameObject other)
         {
             if (other is Worker)

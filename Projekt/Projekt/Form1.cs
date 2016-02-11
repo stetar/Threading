@@ -19,15 +19,15 @@ namespace Projekt
         {
             InitializeComponent();
         }
-
+        //This creates the GameWorld and secures that the background color is white.
         private void Form1_Load(object sender, EventArgs e)
         {
-            BackColor = Color.White;
             if (dc == null)
             {
                 dc = CreateGraphics();
             }
             gw = new GameWorld(dc, DisplayRectangle);
+            BackColor = Color.White;
         }
     }
 }
