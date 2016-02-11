@@ -31,10 +31,12 @@ namespace Projekt
             if (gold < 5)
             {
                 Vector2D velocity = this.position.Subtract(Inn.position);
+                velocity.Normalize();
             }
             if (gold > 5)
             {
                 Vector2D velocity = this.position.Subtract(Farm.position);
+                velocity.Normalize();
             }
 
             if (deathCount == 15)
