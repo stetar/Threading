@@ -15,8 +15,9 @@ namespace Projekt
     {
         private Graphics dc;
         private BufferedGraphics backBuffer;
-        public static List<GameObject> objectList;
-        public static List<GameObject> removeList;
+        public static List<GameObject> objectList = new List<GameObject>();
+        public static List<GameObject> removeList = new List<GameObject>();
+        public static List<Worker> workerList = new List<Worker>(); 
         private static Rectangle displayRectangle;
         private DateTime endTime;
         public static float currentFps;
@@ -40,9 +41,7 @@ namespace Projekt
         {
             WindowRectangle = displayRectangle;
             this.backBuffer = BufferedGraphicsManager.Current.Allocate(dc, displayRectangle);
-            this.dc = backBuffer.Graphics;
-            objectList = new List<GameObject>();
-            removeList = new List<GameObject>();
+            this.dc = backBuffer.Graphics; 
             SetupWorld();
             Thread t = new Thread(GameLoop);
             t.Start();
@@ -53,10 +52,9 @@ namespace Projekt
         {
             Inn myInn = new Inn("Inn.jpg", new Vector2D(20, 200), 1f);
             Farm myFarm = new Farm("Farm.jpg", new Vector2D(400, 200), 1f);
-            Worker myWorker = new Worker(2, "Worker.jpg", new Vector2D(150, 200), .5f);
             objectList.Add(myInn);
             objectList.Add(myFarm);
-            objectList.Add(myWorker);
+            workerList.Add(new Worker(5, "Worker.jpg", new Vector2D(150, 200), .5f));
         }
 
         //This keeps itself going, since the thread created in the constructor runs the while(true) loop.
@@ -81,16 +79,25 @@ namespace Projekt
                 go.Update(fps);
             }
 
-            removeList.Clear();
+            foreach (Worker worker in workerList)
+            {
+                worker.Update(fps);
+            }
 
+            removeList.Clear();
         }
 
         private void Draw()
         {
-            dc.Clear(Color.White);
+            //dc.Clear(Color.White);
             foreach (GameObject go in objectList)
             {
                 go.Draw(dc);
+            }
+
+            foreach (Worker worker in workerList)
+            {
+                worker.Draw(dc);
             }
 
             Font f = new Font("IMPACT", 14);
@@ -100,6 +107,18 @@ namespace Projekt
             dc.DrawString(string.Format("Gold: {0}", totalGold), f, Brushes.Black, 0, 20);
 
             backBuffer.Render();
+        }
+
+        public void CreateWorker()
+        {
+            if (totalGold >= 50)
+            {
+                Random myRandom = new Random();
+
+
+                workerList.ToList().Add(new Worker(2, "Worker.jpg", new Vector2D(150, 240), 0.5f));
+                totalGold -= 50;
+            }
         }
     }
 }
