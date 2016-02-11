@@ -12,18 +12,14 @@ namespace Projekt
         float speed;
         public static int gold = 0;
         public static int deathCount = 0;
-        private Inn inn;
-        private Farm farm;
         
         //The constructor. This also creates the string, which make the worker travel between the inn and the farm.
-        public Worker(float speed, string imagepath, Vector2D startPos, float scalefactor, Inn Inn, Farm Farm) : base(imagepath, startPos, scalefactor)
+        public Worker(float speed, string imagepath, Vector2D startPos, float scalefactor) : base(imagepath, startPos, scalefactor)
         {
             this.speed = speed;
             Thread t = new Thread(() => Update(GameWorld.currentFps));
             t.IsBackground = true;
             t.Start();
-            this.inn = Inn;
-            this.farm = Farm;
         }
         public override void Update(float fps)
         {
