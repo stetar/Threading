@@ -12,9 +12,20 @@ namespace Projekt
 {
     public partial class Form1 : Form
     {
+        private GameWorld gw;
+        private Graphics dc;
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (dc == null)
+            {
+                dc = CreateGraphics();
+            }
+            gw = new GameWorld(dc,DisplayRectangle);
         }
     }
 }

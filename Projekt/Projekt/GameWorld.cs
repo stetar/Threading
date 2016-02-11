@@ -48,6 +48,9 @@ namespace Projekt
         {
             Inn myInn = new Inn("Inn.jpg", new Vector2D(100, 100), 1.5f);
             objectList.Add(myInn);
+            Farm myFarm = new Farm("Farm.jpg", new Vector2D(250,250), 1.5f);
+            objectList.Add((myFarm));
+                
         }
 
         public void GameLoop()
