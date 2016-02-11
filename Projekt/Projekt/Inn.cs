@@ -9,7 +9,7 @@ namespace Projekt
 {
     class Inn : GameObject
     {
-        public static Vector2D position;
+        public Vector2D position;
         private static Semaphore innSpace = new Semaphore(5, 5);
 
         public Inn(string imagepath, Vector2D startpos, float scalefactor) : base(imagepath, startpos, scalefactor)
@@ -28,7 +28,7 @@ namespace Projekt
                     GameWorld.totalGold += 5;
                     Worker.gold = 0;
                     Thread.Sleep(3000);
-                    Worker.deathCount += 1;
+                    Worker.deathCount++;
                     innSpace.Release();
                 }
             }

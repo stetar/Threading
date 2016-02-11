@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Projekt
 {
@@ -48,12 +50,12 @@ namespace Projekt
         //spawns the initial objects of the game.
         public void SetupWorld()
         {
-            Inn myInn = new Inn("Inn.jpg", new Vector2D(20, 20), 1f);
+            Inn myInn = new Inn("Inn.jpg", new Vector2D(20, 200), 1f);
+            Farm myFarm = new Farm("Farm.jpg", new Vector2D(400, 200), 1f);
+            Worker myWorker = new Worker(2, "Worker.jpg", new Vector2D(150, 200), .5f, myInn, myFarm);
             objectList.Add(myInn);
-            Farm myFarm = new Farm("Farm.jpg", new Vector2D(350,300), 1f);
-            objectList.Add((myFarm));
-            Worker myWorker = new Worker(2,"worker.jpg",new Vector2D(150,150), 1f);
-                
+            objectList.Add(myFarm);
+            objectList.Add(myWorker);
         }
 
         //This keeps itself going, since the thread created in the constructor runs the while(true) loop.
@@ -84,6 +86,7 @@ namespace Projekt
 
         private void Draw()
         {
+            dc.Clear(Color.White);
             foreach (GameObject go in objectList)
             {
                 go.Draw(dc);
@@ -93,7 +96,7 @@ namespace Projekt
 #if DEBUG
             dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 0, 0);
 #endif
-            dc.DrawString(string.Format("Gold: {0}", totalGold), f, Brushes.White, 0, 20);
+            dc.DrawString(string.Format("Gold: {0}", totalGold), f, Brushes.Black, 0, 20);
             backBuffer.Render();
         }
     }
