@@ -53,7 +53,7 @@ namespace Projekt
         {
             Inn myInn = new Inn("Inn.jpg", new Vector2D(20, 200), 1f);
             Farm myFarm = new Farm("Farm.jpg", new Vector2D(400, 200), 1f);
-            Worker myWorker = new Worker(2, "Worker.jpg", new Vector2D(150, 200), .5f, myInn, myFarm);
+            Worker myWorker = new Worker(2, "Worker.jpg", new Vector2D(150, 200), .5f);
             objectList.Add(myInn);
             objectList.Add(myFarm);
             objectList.Add(myWorker);
