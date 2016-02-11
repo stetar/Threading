@@ -46,13 +46,14 @@ namespace Projekt
             else
             {
                 Farm.upgraded = true;
+                GameWorld.totalGold -= 300;
             }
             
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (GameWorld.totalGold < 300)
+            if (GameWorld.totalGold < 50)
             {
                 
             }
@@ -61,6 +62,7 @@ namespace Projekt
                 Random myRandom = new Random();
                 
                 GameWorld.objectList.Add(new Worker(2,"Worker.jpg",new Vector2D(150,myRandom.Next(200,360)),0.5f));
+                GameWorld.totalGold -= 50;
             }
         }
     }
