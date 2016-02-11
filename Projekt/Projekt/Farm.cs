@@ -10,7 +10,7 @@ namespace Projekt
     class Farm : GameObject
     {
         public Vector2D position;
-        private static bool upgraded = false;
+        public static bool upgraded = false;
         private static Object FarmLock = new Object();
         private static Semaphore UpgradeFarm = new Semaphore(2, 2);
 
