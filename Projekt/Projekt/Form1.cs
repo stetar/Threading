@@ -15,12 +15,14 @@ namespace Projekt
         private GameWorld gw;
         private Graphics dc;
         public Form1()
+        
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            BackColor = Color.White;
             if (dc == null)
             {
                 dc = CreateGraphics();

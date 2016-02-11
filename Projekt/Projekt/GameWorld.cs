@@ -46,10 +46,11 @@ namespace Projekt
 
         public void SetupWorld()
         {
-            Inn myInn = new Inn("Inn.jpg", new Vector2D(100, 100), 1.5f);
+            Inn myInn = new Inn("Inn.jpg", new Vector2D(20, 20), 1f);
             objectList.Add(myInn);
-            Farm myFarm = new Farm("Farm.jpg", new Vector2D(250,250), 1.5f);
+            Farm myFarm = new Farm("Farm.jpg", new Vector2D(350,300), 1f);
             objectList.Add((myFarm));
+            Worker myWorker = new Worker(2,"worker.jpg",new Vector2D(150,150), 1f);
                 
         }
 
