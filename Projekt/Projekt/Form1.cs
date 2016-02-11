@@ -27,7 +27,7 @@ namespace Projekt
             {
                 dc = CreateGraphics();
             }
-            gw = new GameWorld(dc,DisplayRectangle);
+            gw = new GameWorld(dc, DisplayRectangle);
         }
     }
 }
