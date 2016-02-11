@@ -89,7 +89,7 @@ namespace Projekt
 #if DEBUG
             dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 0, 0);
 #endif
-            dc.DrawString(string.Format("Gold: {0}", totalGold), f, Brushes.Turquoise, 0, 20);
+            dc.DrawString(string.Format("Gold: {0}", totalGold), f, Brushes.White, 0, 20);
             backBuffer.Render();
         }
     }
