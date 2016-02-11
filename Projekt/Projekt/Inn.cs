@@ -27,8 +27,8 @@ namespace Projekt
                     innSpace.WaitOne();
                     GameWorld.totalGold += 5;
                     Worker.gold = 0;
-                    Thread.Sleep(3000);
                     Worker.deathCount++;
+                    Thread.Sleep(0);
                     innSpace.Release();
                 }
             }

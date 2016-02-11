@@ -27,17 +27,17 @@ namespace Projekt
         }
         public override void Update(float fps)
         {
-            if (gold < 5)
-            {
-                position.X += speed;
-            }
-            if (gold > 4)
+            if (gold > 0)
             {
                 position.X -= speed;
             }
+            else
+            {
+                position.X += speed;
+            }
 
             //The worker will die after 15 trips to the inn. Drinking is bad for you!
-            if (deathCount == 15)
+            if (deathCount >= 15)
             {
                 GameWorld.removeList.Add(this);
             }

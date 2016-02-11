@@ -29,7 +29,7 @@ namespace Projekt
                 {
                     lock (FarmLock)
                     {
-                        Thread.Sleep(4000);
+                        Thread.Sleep(0);
                         Worker.gold = 5;
                     }
                 }

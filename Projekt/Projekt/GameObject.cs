@@ -43,7 +43,6 @@ namespace Projekt
         //The base constructor.
         public GameObject(string imagePath, Vector2D startPos, float scaleFactor)
         {
-
             position = startPos;
             this.scaleFactor = scaleFactor;
             this.imagePath = imagePath;

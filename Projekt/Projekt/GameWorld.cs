@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
@@ -97,6 +98,7 @@ namespace Projekt
             dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 0, 0);
 #endif
             dc.DrawString(string.Format("Gold: {0}", totalGold), f, Brushes.Black, 0, 20);
+
             backBuffer.Render();
         }
     }
