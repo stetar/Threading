@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,13 +14,13 @@ namespace Projekt
         public Image sprite;
         protected float scaleFactor;
         private string imagePath;
-        //penis
 
         public RectangleF CollisionBox
         {
             get
             {
-                return new RectangleF(
+                return new RectangleF
+                    (
                     position.X,
                     position.Y,
                     sprite.Width * scaleFactor,
@@ -43,6 +44,7 @@ namespace Projekt
             position = startPos;
             this.scaleFactor = scaleFactor;
             this.imagePath = imagePath;
+            this.sprite = Image.FromFile(imagePath);
         }
 
         public virtual void Draw(Graphics dc)
