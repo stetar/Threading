@@ -15,6 +15,7 @@ namespace Projekt
         protected float scaleFactor;
         private string imagePath;
 
+        //Creates a collisionbox for all gameobjects.
         public RectangleF CollisionBox
         {
             get
@@ -29,6 +30,7 @@ namespace Projekt
             }
         }
 
+        //Gets and sets the position of the object.
         public Vector2D Position
         {
             get
@@ -38,6 +40,7 @@ namespace Projekt
             set { position = value; }
         }
 
+        //The base constructor.
         public GameObject(string imagePath, Vector2D startPos, float scaleFactor)
         {
 
@@ -79,6 +82,7 @@ namespace Projekt
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
 
+        //This is empty, because the individual objects have their own way of reacting to collision.
         public virtual void OnCollision(GameObject other)
         {
 

@@ -32,6 +32,7 @@ namespace Projekt
             }
         }
 
+        //Constructor. This also creates the thread, which is running the gameloop.
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
             WindowRectangle = displayRectangle;
@@ -44,6 +45,7 @@ namespace Projekt
             t.Start();
         }
 
+        //spawns the initial objects of the game.
         public void SetupWorld()
         {
             Inn myInn = new Inn("Inn.jpg", new Vector2D(20, 50), 1f);
@@ -54,6 +56,7 @@ namespace Projekt
                 
         }
 
+        //This keeps itself going, since the thread created in the constructor runs the while(true) loop.
         public void GameLoop()
         {
             while (true)

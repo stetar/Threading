@@ -20,6 +20,7 @@ namespace Projekt
             base.position = startpos;
         }
 
+        //This is where the worker actually works. He goes into the farm, does some work and comes out with gold.
         public override void OnCollision(GameObject other)
         {
             if (other is Worker)
@@ -32,6 +33,7 @@ namespace Projekt
                         Worker.gold = 5;
                     }
                 }
+                //The farm can be upgraded to hold two workers at once.
                 if (upgraded)
                 {
                     UpgradeFarm.WaitOne();

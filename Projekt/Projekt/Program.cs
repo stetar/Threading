@@ -8,9 +8,7 @@ namespace Projekt
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        //This is the entry point of the application.
         [STAThread]
         static void Main()
         {
