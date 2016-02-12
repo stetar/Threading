@@ -114,7 +114,7 @@ namespace Projekt
         public void CreateWorker()
         {
             Random myRandom = new Random();
-            workerList.Add(new Worker(2, "Worker.jpg", new Vector2D(200, myRandom.Next(200, 300)), .5f));
+            workerList.Add(new Worker(.5f, "Worker.jpg", new Vector2D(200, myRandom.Next(200, 300)), .5f));
         }
     }
 }

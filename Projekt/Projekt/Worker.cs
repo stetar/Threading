@@ -56,8 +56,8 @@ namespace Projekt
                 {
                     lock (FarmLock)
                     {
-                        Thread.Sleep(1000);
                         gold = 5;
+                        Thread.Sleep(3000);
                     }
                 }
                 //The farm can be upgraded to hold two workers at once.
@@ -75,11 +75,12 @@ namespace Projekt
                 {
                     if (gold > 0)
                     {
+
                         innMutex.WaitOne();
                         GameWorld.totalGold += gold;
                         gold = 0;
                         deathCount++;
-                        Thread.Sleep(1000);
+                        Thread.Sleep(3000);
                         innMutex.ReleaseMutex();
                     }
                 }
