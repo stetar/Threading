@@ -17,7 +17,7 @@ namespace Projekt
         private BufferedGraphics backBuffer;
         public static List<GameObject> objectList = new List<GameObject>();
         public static List<GameObject> removeList = new List<GameObject>();
-        public static List<Worker> workerList = new List<Worker>(); 
+        public static List<Worker> workerList = new List<Worker>();
         private static Rectangle displayRectangle;
         private DateTime endTime;
         public static float currentFps;
@@ -41,7 +41,7 @@ namespace Projekt
         {
             WindowRectangle = displayRectangle;
             this.backBuffer = BufferedGraphicsManager.Current.Allocate(dc, displayRectangle);
-            this.dc = backBuffer.Graphics; 
+            this.dc = backBuffer.Graphics;
             SetupWorld();
             Thread t = new Thread(GameLoop);
             t.Start();
@@ -54,7 +54,8 @@ namespace Projekt
             Farm myFarm = new Farm("Farm.jpg", new Vector2D(400, 200), 1f);
             objectList.Add(myInn);
             objectList.Add(myFarm);
-            workerList.Add(new Worker(5, "Worker.jpg", new Vector2D(150, 200), .5f));
+            workerList.Add(new Worker(2, "Worker.jpg", new Vector2D(150, 200), .5f));
+            workerList.Add(new Worker(2, "Worker.jpg", new Vector2D(200, 250), .5f));
         }
 
         //This keeps itself going, since the thread created in the constructor runs the while(true) loop.
@@ -89,7 +90,7 @@ namespace Projekt
 
         private void Draw()
         {
-            //dc.Clear(Color.White);
+            dc.Clear(Color.White);
             foreach (GameObject go in objectList)
             {
                 go.Draw(dc);
@@ -116,7 +117,7 @@ namespace Projekt
                 Random myRandom = new Random();
 
 
-                workerList.ToList().Add(new Worker(2, "Worker.jpg", new Vector2D(150, 240), 0.5f));
+                workerList.ToList().Add(new Worker(2, "Worker.jpg", new Vector2D(150, 300), 0.5f));
                 totalGold -= 50;
             }
         }

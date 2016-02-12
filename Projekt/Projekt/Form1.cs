@@ -31,9 +31,12 @@ namespace Projekt
             gw = new GameWorld(dc, DisplayRectangle);
             BackColor = Color.White;
 
-            label1.Text = "300 gold";
-            button2.Text = "Upgrade Farm";
+            label1.Text = "50 gold";
+            label2.Text = "300 gold";
+            label3.Text = "500 gold";
             button1.Text = "Buy worker";
+            button2.Text = "Upgrade Farm";
+            button3.Text = "Expand Inn";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -45,7 +48,7 @@ namespace Projekt
 
             else
             {
-                Worker.upgraded = true;
+                Worker.farmUpgraded = true;
                 GameWorld.totalGold -= 300;
             }
             
@@ -54,6 +57,19 @@ namespace Projekt
         private void button1_Click(object sender, EventArgs e)
         {
             gw.CreateWorker();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (GameWorld.totalGold < 500)
+            {
+                
+            }
+            else
+            {
+                Worker.innUpgraded = true;
+                GameWorld.totalGold -= 500;
+            }
         }
     }
 }

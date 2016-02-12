@@ -12,8 +12,10 @@ namespace Projekt
         float speed;
         private int gold = 0;
         private int deathCount = 0;
-        public static bool upgraded = false;
+        public static bool farmUpgraded = false;
+        public static bool innUpgraded = false;
         private static Object FarmLock = new Object();
+        private static Mutex innMutex = new Mutex();
         private static Semaphore UpgradeFarm = new Semaphore(2, 2);
         private static Semaphore innSpace = new Semaphore(5, 5);
 
@@ -22,7 +24,7 @@ namespace Projekt
         public Worker(float speed, string imagepath, Vector2D startPos, float scalefactor) : base(imagepath, startPos, scalefactor)
         {
             this.speed = speed;
-            Thread t = new Thread(() => Update(GameWorld.currentFps));
+            Thread t = new Thread(GetToWork);
             t.IsBackground = true;
             t.Start();
         }
@@ -46,11 +48,16 @@ namespace Projekt
             base.Update(fps);
         }
 
+        private void GetToWork()
+        {
+            CheckCollision();
+        }
+
         public override void OnCollision(GameObject other)
         {
             if (other is Farm)
             {
-                if (!upgraded)
+                if (!farmUpgraded)
                 {
                     lock (FarmLock)
                     {
@@ -59,25 +66,41 @@ namespace Projekt
                     }
                 }
                 //The farm can be upgraded to hold two workers at once.
-                if (upgraded)
+                if (farmUpgraded)
                 {
                     UpgradeFarm.WaitOne();
-                    Thread.Sleep(5000);
+                    Thread.Sleep(0);
                     gold = 5;
                     UpgradeFarm.Release();
                 }
             }
             if (other is Inn)
             {
-                if (gold >= 5)
+                if (!innUpgraded)
                 {
-                    innSpace.WaitOne();
-                    GameWorld.totalGold += 5;
-                    gold = 0;
-                    deathCount++;
-                    Thread.Sleep(1000);
-                    innSpace.Release();
+                    if (gold > 0)
+                    {
+                        innMutex.WaitOne();
+                        GameWorld.totalGold += gold;
+                        gold = 0;
+                        deathCount++;
+                        Thread.Sleep(1000);
+                        innMutex.ReleaseMutex();
+                    }
                 }
+                else
+                {
+                    if (gold > 0)
+                    {
+                        innSpace.WaitOne();
+                        GameWorld.totalGold += gold;
+                        gold = 0;
+                        deathCount++;
+                        Thread.Sleep(0);
+                        innSpace.Release();
+                    }
+                }
+
             }
         }
     }
