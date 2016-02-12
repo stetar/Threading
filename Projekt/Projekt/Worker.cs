@@ -24,7 +24,7 @@ namespace Projekt
         public Worker(float speed, string imagepath, Vector2D startPos, float scalefactor) : base(imagepath, startPos, scalefactor)
         {
             this.speed = speed;
-            Thread t = new Thread(GetToWork);
+            Thread t = new Thread(() => Update(GameWorld.currentFps));
             t.IsBackground = true;
             t.Start();
         }
@@ -46,11 +46,6 @@ namespace Projekt
             }
 
             base.Update(fps);
-        }
-
-        private void GetToWork()
-        {
-            CheckCollision();
         }
 
         public override void OnCollision(GameObject other)
@@ -88,6 +83,7 @@ namespace Projekt
                         innMutex.ReleaseMutex();
                     }
                 }
+                //The Inn is upgradeable aswell, though this is a bigger upgrade then the Farm, hence why it is more expensive.
                 else
                 {
                     if (gold > 0)

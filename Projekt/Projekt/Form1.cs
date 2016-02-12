@@ -56,7 +56,18 @@ namespace Projekt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            gw.CreateWorker();
+            if (GameWorld.totalGold < 50)
+            {
+                
+            }
+            else
+            {
+                Thread t = new Thread(gw.CreateWorker);
+                t.IsBackground = true;
+                t.Start();
+                GameWorld.totalGold -= 50;
+            }
+
         }
 
         private void button3_Click(object sender, EventArgs e)

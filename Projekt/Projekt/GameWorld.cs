@@ -54,8 +54,9 @@ namespace Projekt
             Farm myFarm = new Farm("Farm.jpg", new Vector2D(400, 200), 1f);
             objectList.Add(myInn);
             objectList.Add(myFarm);
-            workerList.Add(new Worker(2, "Worker.jpg", new Vector2D(150, 200), .5f));
-            workerList.Add(new Worker(2, "Worker.jpg", new Vector2D(200, 250), .5f));
+            Thread t = new Thread(CreateWorker);
+            t.IsBackground = true;
+            t.Start();
         }
 
         //This keeps itself going, since the thread created in the constructor runs the while(true) loop.
@@ -75,12 +76,12 @@ namespace Projekt
 
         private void Update(float fps)
         {
-            foreach (GameObject go in objectList.ToList()) //To list as you can't modify it in runtime elsewise.
+            foreach (GameObject go in objectList.ToList())
             {
                 go.Update(fps);
             }
 
-            foreach (Worker worker in workerList)
+            foreach (Worker worker in workerList.ToList())
             {
                 worker.Update(fps);
             }
@@ -91,12 +92,12 @@ namespace Projekt
         private void Draw()
         {
             dc.Clear(Color.White);
-            foreach (GameObject go in objectList)
+            foreach (GameObject go in objectList.ToList())
             {
                 go.Draw(dc);
             }
 
-            foreach (Worker worker in workerList)
+            foreach (Worker worker in workerList.ToList())
             {
                 worker.Draw(dc);
             }
@@ -112,14 +113,8 @@ namespace Projekt
 
         public void CreateWorker()
         {
-            if (totalGold >= 50)
-            {
-                Random myRandom = new Random();
-
-
-                workerList.ToList().Add(new Worker(2, "Worker.jpg", new Vector2D(150, 300), 0.5f));
-                totalGold -= 50;
-            }
+            Random myRandom = new Random();
+            workerList.Add(new Worker(2, "Worker.jpg", new Vector2D(200, myRandom.Next(200, 300)), .5f));
         }
     }
 }
